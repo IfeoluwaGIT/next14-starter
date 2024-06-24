@@ -15,10 +15,22 @@ import { getPost } from '@/app/lib/data'
 //   return res.json()
 // }
 
+export const generateMetadata = async ({ params }) => { // SEO
+  const { slug } = params;
+
+  const post = await getPost(slug);
+
+  return {
+    title: post.title,
+    description: post.desc,
+  };
+};
+
+
 const SinglePostPage = async ({params}) => { // to reach this slug, we will destructure params
   
   const {slug} = params; // use params to get our slug
-
+// EVEN IF YOU FETCH DATA TWICE IN NEXTJS, IT WILL FETCH IT ONCE
   // WITH API
   // const post = await getData(slug)
 
